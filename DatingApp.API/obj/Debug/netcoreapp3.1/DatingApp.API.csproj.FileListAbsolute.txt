@@ -48,3 +48,6 @@
 /Users/aaronromero/Desktop/Angular_Projects/DatingApp/DatingApp.API/bin/Debug/netcoreapp3.1/Microsoft.IdentityModel.Tokens.dll
 /Users/aaronromero/Desktop/Angular_Projects/DatingApp/DatingApp.API/bin/Debug/netcoreapp3.1/Newtonsoft.Json.dll
 /Users/aaronromero/Desktop/Angular_Projects/DatingApp/DatingApp.API/bin/Debug/netcoreapp3.1/System.IdentityModel.Tokens.Jwt.dll
+/Users/aaronromero/Desktop/Angular_Projects/DatingApp/DatingApp.API/bin/Debug/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/aaronromero/Desktop/Angular_Projects/DatingApp/DatingApp.API/bin/Debug/netcoreapp3.1/Microsoft.IdentityModel.Protocols.dll
+/Users/aaronromero/Desktop/Angular_Projects/DatingApp/DatingApp.API/bin/Debug/netcoreapp3.1/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
