@@ -36,6 +36,26 @@ export class PhotoEditorComponent implements OnInit {
       autoUpload: false,
       maxFileSize: 10 * 1024 * 1024
     });
+
+    // To get past CORS Error (since credentials are not being sent to server)
+    this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false; };
+
+    // Will allow user to automatically see photo being uploaded to their gallery
+    this.uploader.onSuccessItem = (item, response, status, headers) => {
+      if (response) {
+        // Using JSON.parse to convert response to an object
+        const res: Photo = JSON.parse(response);
+        const photo = {
+          id: res.id,
+          url: res.url,
+          dateAdded: res.dateAdded,
+          description: res.description,
+          isMain: res.isMain
+        };
+        this.photos.push(photo);
+
+      }
+    };
   }
 
 }
