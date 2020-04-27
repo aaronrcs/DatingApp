@@ -42,4 +42,9 @@ export class MemberEditComponent implements OnInit {
     });
   }
 
+  // Function to set new main photo (without refreshing page)
+  updateMainPhoto(photoUrl) {
+    this.user.photoUrl = photoUrl;
+  }
+
 }
