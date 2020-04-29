@@ -68,7 +68,14 @@ export class PhotoEditorComponent implements OnInit {
       this.currentMain.isMain = false;
       photo.isMain = true;
 
-      this.getMemberPhotoChange.emit(photo.url);
+      /* Sending the photoUrl to changeMemberPhoto function in AuthService to provide
+      the url of the updated main photo to both Member Edit Component and Nav Component
+        -Both of these components subscribe to a BehaviorSubject thus always getting an
+        updated photoUrl
+      */
+      this.authService.changeMemberPhoto(photo.url);
+      this.authService.currentUser.photoUrl = photo.url;
+      localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
     }, error => {
       this.alertify.error(error);
     });

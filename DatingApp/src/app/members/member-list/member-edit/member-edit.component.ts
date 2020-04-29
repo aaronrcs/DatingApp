@@ -13,6 +13,7 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class MemberEditComponent implements OnInit {
   user: User;
+  photoUrl: string;
   @ViewChild('editForm', {static: true}) editFrom: NgForm;
   @HostListener('window:beforeunload', ['$event'])
   // A Browser dialog box will appear if user tries to close browser without saving changes
@@ -30,6 +31,9 @@ export class MemberEditComponent implements OnInit {
       this.user = data.user;
       // console.log('User Info: ', this.user);
     });
+    // Subscribing to the BehaviorSubject to acquire a live update of a photoUrl
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
+
   }
 
   updateUser() {
