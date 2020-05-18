@@ -48,7 +48,13 @@ namespace DatingApp.API.Data
         {
             // var users = await _context.Users.Include(p => p.Photos).ToListAsync();
 
-            var users = _context.Users.Include(p => p.Photos);
+            var users = _context.Users.Include(p => p.Photos).AsQueryable();
+
+            // Returning all users info except for the currently logged in User 
+            users = users.Where(u => u.Id != userParams.UserId);
+
+            // Retrieving Users based on specified Gender
+            users = users.Where(u => u.Gender == userParams.Gender);
 
             return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
         }
