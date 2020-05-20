@@ -49,7 +49,8 @@ namespace DatingApp.API.Data
         {
             // var users = await _context.Users.Include(p => p.Photos).ToListAsync();
 
-            var users = _context.Users.Include(p => p.Photos).AsQueryable();
+            var users = _context.Users.Include(p => p.Photos)
+            .OrderByDescending(u => u.LastActive).AsQueryable();
 
             // Returning all users info except for the currently logged in User 
             users = users.Where(u => u.Id != userParams.UserId);
@@ -64,6 +65,20 @@ namespace DatingApp.API.Data
 
                 // Returning back a list of Users with a specified min/max Date of Birth
                 users = users.Where(u => u.DateOfBirth >= minDob && u.DateOfBirth <= maxDob);
+            }
+
+            if (!string.IsNullOrEmpty(userParams.OrderBy))
+            {
+                switch (userParams.OrderBy)
+                {
+                    case "created":
+                        users = users.OrderByDescending(u => u.Created);
+                        break;
+                    default:
+                        users = users.OrderByDescending(u => u.LastActive);
+                        break;
+
+                }
             }
 
             return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
