@@ -62,6 +62,8 @@ namespace DatingApp.API.Data
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
+            // hmac.key = passwordSalt 
+            // - This gives a randomly generated key, its used to unlock our hashed password
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {
                 passwordSalt = hmac.Key;

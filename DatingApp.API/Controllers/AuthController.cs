@@ -70,7 +70,7 @@ namespace DatingApp.API.Controllers
                 new Claim(ClaimTypes.Name, userFromRepo.Username)
             };
 
-            // Creating a security key
+            // Creating a security key to sign our token
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
 
             // Using the created Security Key and encrypting the key using Hmac algorithm
