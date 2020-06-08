@@ -24,6 +24,7 @@ import { MemberListComponent } from './members/member-list/member-list.component
 import { MemberDetailComponent } from './members/member-list/member-detail/member-detail.component';
 import { MemberEditComponent } from './members/member-list/member-edit/member-edit.component';
 import { MemberCardComponent } from './members/member-list/member-card/member-card.component';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { appRoutes } from './routes';
@@ -54,6 +55,7 @@ export function tokenGetter() {
       MemberDetailComponent,
       MemberEditComponent,
       PhotoEditorComponent,
+      MemberMessagesComponent,
       TimeAgoPipe
    ],
    imports: [
