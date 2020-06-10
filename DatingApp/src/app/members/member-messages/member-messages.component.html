@@ -6,7 +6,7 @@
 
     <ul class="chat">
       <li *ngFor="let message of messages">
-        <!-- to them -->
+        <!-- Name/Icon will appear in the far LEFT SIDE of chat when viewing another users profile -->
         <div *ngIf="message.senderId == recipientId">
           <span class="chat-img float-left">
             <img src="{{message.senderPhotoUrl}}" alt="{{message.senderKnownAs}}" class="rounded-circle">
@@ -21,7 +21,7 @@
             <p>{{message.content}}</p>
           </div>
         </div>
-        <!-- to me -->
+        <!-- Currently Logged in user will see Name/Icon on the RIGHT SIDE of chat  -->
         <div *ngIf="message.senderId != recipientId">
           <span class="chat-img float-right">
             <img src="{{message.senderPhotoUrl}}" alt="{{message.senderKnownAs}}" class="rounded-circle">
