@@ -24,6 +24,8 @@ export class MemberMessagesComponent implements OnInit {
     this.userService.getMessageThread(this.authService.decodedToken.nameid, this.recipientId)
       .subscribe(messages => {
         this.messages = messages;
+        console.log(this.messages);
+        console.log(this.recipientId);
     }, error => {
       this.alertify.error(error);
     });
