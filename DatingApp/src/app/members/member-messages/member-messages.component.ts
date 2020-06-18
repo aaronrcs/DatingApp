@@ -21,6 +21,7 @@ export class MemberMessagesComponent implements OnInit {
     this.loadMessages();
   }
 
+  // Utility function to gather message thread between 2 users from server
   loadMessages() {
     this.userService.getMessageThread(this.authService.decodedToken.nameid, this.recipientId)
       .subscribe(messages => {
@@ -30,6 +31,7 @@ export class MemberMessagesComponent implements OnInit {
     });
   }
 
+  // Function for sending private messages to other user
   sendMessage() {
     this.newMessage.recipientId = this.recipientId;
     this.userService.sendMessage(this.authService.decodedToken.nameid, this.newMessage)
