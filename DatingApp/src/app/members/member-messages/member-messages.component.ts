@@ -3,6 +3,7 @@ import { AlertifyService } from './../../_services/alertify.service';
 import { AuthService } from './../../_services/auth.service';
 import { UserService } from 'src/app/_services/user.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { tap } from 'rxjs/operators';
 
 
 @Component({
@@ -23,7 +24,21 @@ export class MemberMessagesComponent implements OnInit {
 
   // Utility function to gather message thread between 2 users from server
   loadMessages() {
+    const currentUserId = +this.authService.decodedToken.nameid;
     this.userService.getMessageThread(this.authService.decodedToken.nameid, this.recipientId)
+      .pipe(
+        tap(messages => {
+          // console.log('CU: ', currentUserId);
+          // tslint:disable-next-line: prefer-for-of
+          for (let i = 0; i < messages.length; i++) {
+            // console.log('RID:', messages[i].recipientId);
+            // console.log('Messages: ', messages[i]);
+            if (messages[i].isRead === false && messages[i].recipientId === currentUserId) {
+              this.userService.markAsRead(currentUserId, messages[i].id);
+            }
+          }
+        })
+      )
       .subscribe(messages => {
         this.messages = messages;
     }, error => {
