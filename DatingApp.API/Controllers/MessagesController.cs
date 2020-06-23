@@ -112,7 +112,7 @@ namespace DatingApp.API.Controllers
             throw new Exception("Creating message failed on save");
         }
 
-        [HttpPost("id")]
+        [HttpPost("{id}")]
         public async Task<IActionResult> DeleteMessage(int id, int userId)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value)) {
