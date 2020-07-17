@@ -28,7 +28,7 @@ namespace DatingApp.API.Helpers
         {
             // Counting the number of elements
             var count = await source.CountAsync();
-            // Get items from source; Use Paging information to determine how items we will return
+            // Get items from source; Use Paging information to determine how many items we will return
             var items = await source.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
             return new PagedList<T>(items, count, pageNumber, pageSize);
         }
